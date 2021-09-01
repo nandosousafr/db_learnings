@@ -1,8 +1,5 @@
 FROM ruby:3.0.2
 
-ARG JFROG_USERNAME
-ARG JFROG_PASSWORD
-
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     echo 'deb https://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/yarn.list &&\
     wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&\
@@ -11,9 +8,6 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
 
 WORKDIR /var/app
 COPY . .
-
-RUN bundle config resultadosdigitais.jfrog.io $JFROG_USERNAME:$JFROG_PASSWORD
-RUN bundle config timeout 240
 
 RUN bundle install -j4
 
