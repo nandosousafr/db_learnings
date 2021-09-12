@@ -3,6 +3,6 @@ build:
 start:
 	docker-compose up
 bash:
-	docker-compose run web bash
-specs:
-	docker-compose run bundle exec rspec specs
+	docker-compose exec web bash
+database:
+	docker-compose exec db psql -U postgres
